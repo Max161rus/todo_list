@@ -1,0 +1,72 @@
+.header {
+    width: 100%;
+}
+
+.heading {
+    width: 100%;
+    font-size: 100px;
+    font-weight: 100;
+    text-align: center;
+    color: rgba(175, 47, 47, 0.15);
+}
+
+.newTodo {
+    display: flex;
+    box-shadow: inset 0 -2px 1px rgb(0 0 0 / 30%);
+    background-color: white;
+    height: 50px;
+}
+
+.newTodoLabel {
+    font-size: 30px;
+    font-weight: 300;
+    margin-left: 20px;
+    margin-right: 20px;
+    transform: rotate(90deg);
+}
+
+.newTodoText {
+    padding: 16px 16px 16px 10px;
+    border: none;
+    background: rgba(0, 0, 0, 0.003);
+    position: relative;
+    margin: 0;
+    width: 100%;
+    font-size: 24px;
+    font-family: inherit;
+    font-weight: inherit;
+    line-height: 1.4em;
+    color: inherit;
+    outline: none;
+}
+
+.newTodoText::placeholder {
+    color: #d9d9d9
+}
+
+@media (min-width: 450px) and (max-width: 500px) {
+    .newTodoText {
+        font-size: 20px;
+        padding-left: 0x;
+    }
+
+    .newTodoLabel {
+        font-size: 25px;
+        font-weight: 250;
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+}
+
+@media (min-width: 320px) and (max-width: 450px) {
+    .newTodoText {
+        font-size: 15px;
+    }
+
+    .newTodoLabel {
+        font-size: 20px;
+        font-weight: 200;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+}

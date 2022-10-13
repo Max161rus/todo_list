@@ -1,0 +1,113 @@
+.footer {
+    width: 100%;
+    background-color: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: inset 0 -2px 1px rgb(0 0 0 / 30%);
+    height: 50px;
+}
+
+.count {
+    color: #4d4d4d;
+    font-weight: 500;
+}
+
+.filterAll {
+    border: 1px solid white;
+    border-radius: 2px;
+    color: #4d4d4d;
+    font-weight: 500;
+    background-color: white;
+}
+
+.filterActive {
+    border: 1px solid white;
+    border-radius: 2px;
+    color: #4d4d4d;
+    font-weight: 500;
+    background-color: white;
+}
+
+.filterCompleted {
+    border: 1px solid white;
+    border-radius: 2px;
+    color: #4d4d4d;
+    font-weight: 500;
+    background-color: white;
+}
+
+.clear {
+    color: #4d4d4d;
+    font-weight: 500;
+    border: none;
+    background-color: white;
+}
+
+.filterAll:hover {
+    border-color: orange;
+}
+
+.filterActive:hover {
+    border-color: orange;
+}
+
+.filterCompleted:hover {
+    border-color: orange;
+}
+
+.clear:hover {
+    text-decoration: underline;
+}
+
+.active {
+    border-color: orange;
+  }
+
+@media (min-width: 450px) and (max-width: 500px) {
+    .footer {
+        height: 65px;
+    }
+
+    .filter {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .filterAll {
+        margin-top: 5px;
+        margin-bottom: 1px;
+    }
+
+    .filterActive {
+        margin-bottom: 1px;
+    }
+
+    .filterCompleted {
+        margin-bottom: 5px;
+    }
+}
+
+@media (min-width: 320px) and (max-width: 450px) {
+    .footer {
+        height: 65px;
+    }
+
+    .filter {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .filterAll {
+        margin-top: 5px;
+        margin-bottom: 1px;
+    }
+
+    .filterActive {
+        margin-bottom: 1px;
+    }
+
+    .filterCompleted {
+        margin-bottom: 5px;
+    }
+}
