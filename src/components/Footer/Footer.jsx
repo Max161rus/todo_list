@@ -5,7 +5,7 @@ const Footer = () => {
         <footer className={style.footer}>
             <p className={style.count}>item 0</p>
             <div className={style.filter}>
-                <button className={style.filterAll}>All</button>
+                <button className={style.filterAll && style.active}>All</button>
                 <button className={style.filterActive}>Active</button>
                 <button className={style.filterCompleted}>Completed</button>
             </div>

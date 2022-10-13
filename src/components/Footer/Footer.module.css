@@ -19,6 +19,7 @@
     color: #4d4d4d;
     font-weight: 500;
     background-color: white;
+    margin-right: 5px;
 }
 
 .filterActive {
@@ -27,6 +28,7 @@
     color: #4d4d4d;
     font-weight: 500;
     background-color: white;
+    margin-right: 5px;
 }
 
 .filterCompleted {
@@ -61,7 +63,9 @@
 }
 
 .active {
-    border-color: orange;
+    background-color: white;
+    border: 1px solid orange;
+    margin-right: 5px;
   }
 
 @media (min-width: 450px) and (max-width: 500px) {
