@@ -3,3 +3,11 @@
     background-color: white;
     height: auto;
 }
+
+.show {
+    display: flex;
+}
+
+.hide {
+    display: none;
+}

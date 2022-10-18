@@ -37,6 +37,7 @@
     color: #4d4d4d;
     font-weight: 500;
     background-color: white;
+    margin-right: 5px;
 }
 
 .clear {
@@ -66,7 +67,20 @@
     background-color: white;
     border: 1px solid orange;
     margin-right: 5px;
-  }
+    border-radius: 2px;
+}
+
+.show {
+    display: flex;
+}
+
+.hide {
+    display: none;
+}
+
+.clearHide {
+    opacity: 0;
+}
 
 @media (min-width: 450px) and (max-width: 500px) {
     .footer {

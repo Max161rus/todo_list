@@ -62,7 +62,7 @@
 
 .active {
     border-color: orange;
-  }
+}
 
 @media (min-width: 450px) and (max-width: 500px) {
     .footer {

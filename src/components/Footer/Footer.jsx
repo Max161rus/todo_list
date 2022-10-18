@@ -1,15 +1,67 @@
 import style from './Footer.module.css';
 
-const Footer = () => {
+const Footer = (props) => {
+
+    let footerHide = `${style.footer} ${style.hide}`;
+
+    let clearHide = `${style.clear} ${style.clearHide}`;
+
+    let counterItemLeft = 0;
+
+    let filterAll = style.filterAll;
+
+    let filterActive = style.filterActive;
+
+    let filterCompleted = style.filterCompleted;
+
+    if(props.filter === 'all'){
+        filterAll = style.filterAll && style.active;
+    }
+
+    if(props.filter === 'active'){
+        filterActive = style.filterActive && style.active;
+    }
+
+    if(props.filter === 'completed'){
+        filterCompleted = style.filterCompleted && style.active;
+    }
+
+    if (props.data.length > 0) {
+        footerHide = style.footer;
+    }
+
+    props.data.map(item => {
+        if (item.active === false) {
+            clearHide = style.clear;
+        } else {
+            counterItemLeft++;
+        }
+    });
+
+    const filterChandge = e => {
+        props.dataFilter(e.target.name);
+    }
+
+    const todoClearCompleted = () => {
+        const newData = props.data.map(item => item);
+            newData.map((item, key) => {
+                if(!item.active){
+                    newData.splice(key, 1)
+                }
+            });
+            console.log(newData)
+           // props.dataChange(newData); 
+    }
+
     return (
-        <footer className={style.footer}>
-            <p className={style.count}>item 0</p>
+        <footer className={footerHide}>
+            <p className={style.count}>{counterItemLeft} item left</p>
             <div className={style.filter}>
-                <button className={style.filterAll && style.active}>All</button>
-                <button className={style.filterActive}>Active</button>
-                <button className={style.filterCompleted}>Completed</button>
+                <button onClick={filterChandge} className={filterAll} name='all'>All</button>
+                <button onClick={filterChandge} className={filterActive} name='active'>Active</button>
+                <button onClick={filterChandge} className={filterCompleted} name='completed'>Completed</button>
             </div>
-            <button className={style.clear}>Clear completed</button>
+            <button onClick={todoClearCompleted} className={clearHide}>Clear completed</button>
         </footer>
     );
 }
