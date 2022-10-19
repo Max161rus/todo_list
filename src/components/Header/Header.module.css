@@ -45,15 +45,15 @@
 }
 
 .show {
-    display: flex;
+    opacity: 1;
 }
 
 .hide {
-    opacity: 0%;
+    opacity: 0;
 }
 
 .halfHidden {
-    opacity: 50%;
+    opacity: 0.5;
 }
 
 @media (min-width: 450px) and (max-width: 500px) {

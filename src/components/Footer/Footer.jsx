@@ -42,15 +42,16 @@ const Footer = (props) => {
         props.dataFilter(e.target.name);
     }
 
-    const todoClearCompleted = () => {
-        const newData = props.data.map(item => item);
-            newData.map((item, key) => {
-                if(!item.active){
-                    newData.splice(key, 1)
+    function todoClearCompleted () {
+        let counter = 0;
+        const newData = [];
+            for (let i = 0; i < props.data.length; i++){
+                if(props.data[i].active === true){
+                    newData[counter] = props.data[i]
+                    counter++;
                 }
-            });
-            console.log(newData)
-           // props.dataChange(newData); 
+            }
+            props.dataChange(newData);		
     }
 
     return (
