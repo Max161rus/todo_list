@@ -13,6 +13,8 @@ const Header = (props) => {
 		}
 	}
 
+    localStorage.setItem('dataList', JSON.stringify(props.data));
+
     const onEnter = e => {
         if(e.key === 'Enter' && e.target.value !== ''){
             const newData = props.data.map(item => item);
@@ -22,7 +24,6 @@ const Header = (props) => {
                 input: false
             });
             e.target.value = ''; 
-            localStorage.setItem('data', newData); 
             props.dataChange(newData); 
         }
     };
@@ -47,7 +48,7 @@ const Header = (props) => {
             <h1 className={style.heading}>todos</h1>
             <div className={style.newTodo}>
                 <label onClick={completedAll} className={showLabel}>❯</label>
-                <input onKeyDown={onEnter} className={style.newTodoText} placeholder="Что нужно сделать?" autoFocus="" />
+                <input onKeyDown={onEnter} className={style.newTodoText} placeholder="Что нужно сделать?" autoFocus />
             </div>
         </header>
     );
