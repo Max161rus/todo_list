@@ -1,30 +1,47 @@
 import { useState } from 'react';
-import Header from './components/Header/Header';
-import Main from './components/Main/Main';
-import Footer from './components/Footer/Footer';
+import Header from './components/Header';
+import Main from './components/Main';
+import Footer from './components/Footer';
 import style from './App.module.css';
 
 const App = () => {
 
-  const [data, dataChange] = useState(setStorage());
+  const [data, setData] = useState([]);
 
-  const [filter, dataFilter] = useState('all');
+  const [id, setId] = useState(1);
 
-  function setStorage() {
-    if (localStorage.getItem('dataList') !== null) {
-      return JSON.parse(localStorage.getItem('dataList'));
-    }
-    if (localStorage.getItem('dataList') === null) {
-      return []
-    }
+  const settingId = () => {
+    setId(id => id + 1);
+    return id;
+  };
 
+  const addTodo = value => {
+    const newTodo = {
+      todoText: value,
+      activityFlag: true,
+      editingTodo: false,
+      id: settingId()
+    };
+    setData([...data, newTodo]);
+  }
+
+  const deleteTodo = newData => {
+    setData(newData);
+  }
+
+  const deleteСompletedTodos = newData => {
+    setData(newData);
+  }
+
+  const activitySwitch = newData => {
+    setData(newData);
   }
 
   return (
     <section className={style.todoapp}>
-      <Header dataChange={dataChange} data={data} />
-      <Main dataChange={dataChange} data={data} filter={filter} />
-      <Footer dataChange={dataChange} data={data} filter={filter} dataFilter={dataFilter} />
+      <Header addTodo={addTodo} data={data} />
+      <Main data={data} deleteTodo={deleteTodo} activitySwitch={activitySwitch} />
+      {data.length > 0 ? <Footer data={data} deleteСompletedTodos={deleteСompletedTodos} /> : null}
     </section>
   );
 }

@@ -6,13 +6,13 @@
     width: 450px;
   }
   
-  @media (min-width: 450px) and (max-width: 500px) {
+  @media (max-width: 500px) {
     .todoapp {
         width: 300px;
     }
   }
   
-  @media (min-width: 320px) and (max-width: 450px) {
+  @media (max-width: 450px) {
     .todoapp {
         width: 250px;
     }

@@ -13,25 +13,7 @@
     font-weight: 500;
 }
 
-.filterAll {
-    border: 1px solid white;
-    border-radius: 2px;
-    color: #4d4d4d;
-    font-weight: 500;
-    background-color: white;
-    margin-right: 5px;
-}
-
-.filterActive {
-    border: 1px solid white;
-    border-radius: 2px;
-    color: #4d4d4d;
-    font-weight: 500;
-    background-color: white;
-    margin-right: 5px;
-}
-
-.filterCompleted {
+.filterButton {
     border: 1px solid white;
     border-radius: 2px;
     color: #4d4d4d;
@@ -47,15 +29,11 @@
     background-color: white;
 }
 
-.filterAll:hover {
-    border-color: orange;
+.btnClear {
+    width: 100px;
 }
 
-.filterActive:hover {
-    border-color: orange;
-}
-
-.filterCompleted:hover {
+.filterButton:hover {
     border-color: orange;
 }
 
@@ -82,7 +60,7 @@
     opacity: 0;
 }
 
-@media (min-width: 450px) and (max-width: 500px) {
+@media  (max-width: 500px) {
     .footer {
         height: 65px;
     }
@@ -92,21 +70,9 @@
         flex-direction: column;
     }
 
-    .filterAll {
-        margin-top: 5px;
-        margin-bottom: 1px;
-    }
-
-    .filterActive {
-        margin-bottom: 1px;
-    }
-
-    .filterCompleted {
-        margin-bottom: 5px;
-    }
 }
 
-@media (min-width: 320px) and (max-width: 450px) {
+@media  (max-width: 450px) {
     .footer {
         height: 65px;
     }
@@ -116,16 +82,4 @@
         flex-direction: column;
     }
 
-    .filterAll {
-        margin-top: 5px;
-        margin-bottom: 1px;
-    }
-
-    .filterActive {
-        margin-bottom: 1px;
-    }
-
-    .filterCompleted {
-        margin-bottom: 5px;
-    }
 }
