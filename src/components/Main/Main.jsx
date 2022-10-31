@@ -1,7 +1,7 @@
 import ItemTodo from '../ItemTodo/ItemTodo';
 import style from './Main.module.css';
 
-const Main = ({ data, deleteTodo, activitySwitch }) => {
+const Main = ({ data, deleteTodo, activitySwitch, filter }) => {
 
     return (
         <main className={style.main}>

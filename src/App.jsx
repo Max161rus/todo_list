@@ -10,6 +10,8 @@ const App = () => {
 
   const [id, setId] = useState(1);
 
+  const [filter, setFilter] = useState('All');
+
   const settingId = () => {
     setId(id => id + 1);
     return id;
@@ -37,11 +39,23 @@ const App = () => {
     setData(newData);
   }
 
+  const selectAllTodoActive = newData => {
+    setData(newData);
+  }
+
+  const selectAllTodoComplite = newData => {
+    setData(newData);
+  }
+
+  const filterTodo = text => {
+    setFilter(text);
+  }
+
   return (
     <section className={style.todoapp}>
-      <Header addTodo={addTodo} data={data} />
-      <Main data={data} deleteTodo={deleteTodo} activitySwitch={activitySwitch} />
-      {data.length > 0 ? <Footer data={data} deleteСompletedTodos={deleteСompletedTodos} /> : null}
+      <Header addTodo={addTodo} data={data} selectAllTodoActive={selectAllTodoActive} selectAllTodoComplite={selectAllTodoComplite}/>
+      <Main data={data} deleteTodo={deleteTodo} activitySwitch={activitySwitch} filter={filter}/>
+      {data.length > 0 ? <Footer data={data} deleteСompletedTodos={deleteСompletedTodos} filterTodo={filterTodo}/> : null}
     </section>
   );
 }
