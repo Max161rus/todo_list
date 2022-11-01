@@ -39,11 +39,7 @@ const App = () => {
     setData(newData);
   }
 
-  const selectAllTodoActive = newData => {
-    setData(newData);
-  }
-
-  const selectAllTodoComplite = newData => {
+  const selectAllTodo = newData => {
     setData(newData);
   }
 
@@ -53,9 +49,9 @@ const App = () => {
 
   return (
     <section className={style.todoapp}>
-      <Header addTodo={addTodo} data={data} selectAllTodoActive={selectAllTodoActive} selectAllTodoComplite={selectAllTodoComplite}/>
+      <Header addTodo={addTodo} data={data} selectAllTodo={selectAllTodo} />
       <Main data={data} deleteTodo={deleteTodo} activitySwitch={activitySwitch} filter={filter}/>
-      {data.length > 0 ? <Footer data={data} deleteСompletedTodos={deleteСompletedTodos} filterTodo={filterTodo}/> : null}
+      {data.length > 0 ? <Footer data={data} deleteСompletedTodos={deleteСompletedTodos} filterTodo={filterTodo} filter={filter}/> : null}
     </section>
   );
 }

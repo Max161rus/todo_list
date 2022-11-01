@@ -1,6 +1,6 @@
 import style from './Header.module.css';
 
-const Header = ({ addTodo, data, selectAllTodoActive, selectAllTodoComplite }) => {
+const Header = ({ addTodo, data, selectAllTodoActive, selectAllTodo }) => {
 
     const addTextTodo = e => {
         if (e.key === 'Enter' && e.target.value !== '') {
@@ -15,7 +15,7 @@ const Header = ({ addTodo, data, selectAllTodoActive, selectAllTodoComplite }) =
         newData.forEach((item, index) => {
             item.activityFlag = true;
         });
-        selectAllTodoActive(newData);
+        selectAllTodo(newData);
     }
 
     const allCasesComplite = data => {
@@ -23,10 +23,10 @@ const Header = ({ addTodo, data, selectAllTodoActive, selectAllTodoComplite }) =
         newData.forEach((item, index) => {
             item.activityFlag = false;
         });
-        selectAllTodoComplite(newData);
+        selectAllTodo(newData);
     }
 
-    const addLabelSelectAll = (data) => {
+    const addLabelSelectAll = data => {
         if (data.length > 0 && data.every(item => !item.activityFlag)) {
             return <label onClick={() => allCasesActive(data)} className={style.newTodoLabelActive}>❯</label>
         }

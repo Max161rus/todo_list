@@ -1,4 +1,5 @@
 import style from './ItemTodo.module.css';
+import stylesMultipleClasses from 'classnames'
 import completed from './images/completed.svg';
 import noCompleted from './images/no_completed.svg';
 
@@ -34,7 +35,8 @@ const ItemTodo = ({ data, dataList, deleteTodo, activitySwitch }) => {
                     <img onClick={() => toggleActivityFlag(data, dataList)} className={style.iconOn} src={completed} alt="pressed" />}
 
                 {data.editingTodo ? <input className={style.listText} defaultValue={data.todoText} id="main__list-text" /> :
-                    <label className={style.listTodo} htmlFor="main__list-text">{data.todoText}</label>}
+                    <label className={data.activityFlag ? style.listTodo : stylesMultipleClasses(style.listTodo, style.completed)}
+                        htmlFor="main__list-text">{data.todoText}</label>}
 
                 <button onClick={() => deleteItem(data, dataList)} className={style.listClear}>×</button>
             </div>
