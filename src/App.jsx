@@ -6,11 +6,22 @@ import style from './App.module.css';
 
 const App = () => {
 
-  const [data, setData] = useState([]);
+  const setStorage = () => {
+    if (localStorage.getItem('dataList') !== null) {
+      return JSON.parse(localStorage.getItem('dataList'));
+    }
+    if (localStorage.getItem('dataList') === null) {
+      return [];
+    }
+  }
+
+  const [data, setData] = useState(() => setStorage());
 
   const [id, setId] = useState(1);
 
   const [filter, setFilter] = useState('All');
+
+  localStorage.setItem('dataList', JSON.stringify(data));
 
   const settingId = () => {
     setId(id => id + 1);
@@ -82,10 +93,17 @@ const App = () => {
     }
   }
 
+  const cancelingSaveByClick = () => {
+    const newData = [...data];
+    newData.forEach(item => item.editingTodo = false);
+    setData(newData);
+  }
+
   return (
     <section className={style.todoapp}>
       <Header addTodo={addTodo} data={data} selectAllTodo={selectAllTodo} />
-      <Main data={data} deleteTodo={deleteTodo} activitySwitch={activitySwitch} filter={filter} editItem={editItem} savingChangesItem={savingChangesItem} />
+      <Main data={data} deleteTodo={deleteTodo} activitySwitch={activitySwitch}
+        filter={filter} editItem={editItem} savingChangesItem={savingChangesItem} cancelingSaveByClick={cancelingSaveByClick} />
       {data.length > 0 && <Footer data={data} deleteСompletedTodos={deleteСompletedTodos} filterTodo={filterTodo} filter={filter} />}
     </section>
   );

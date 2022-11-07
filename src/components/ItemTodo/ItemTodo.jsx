@@ -3,7 +3,7 @@ import stylesMultipleClasses from 'classnames'
 import completed from './images/completed.svg';
 import noCompleted from './images/no_completed.svg';
 
-const ItemTodo = ({ data, dataList, deleteTodo, activitySwitch, editItem, savingChangesItem }) => {
+const ItemTodo = ({ data, dataList, deleteTodo, activitySwitch, editItem, savingChangesItem, cancelingSaveByClick }) => {
 
     const deleteItem = (data, dataList) => {
         const newData = [];
@@ -34,7 +34,7 @@ const ItemTodo = ({ data, dataList, deleteTodo, activitySwitch, editItem, saving
                 {data.activityFlag ? <img onClick={() => toggleActivityFlag(data, dataList)} className={style.iconOff} src={noCompleted} alt="not pressed" /> :
                     <img onClick={() => toggleActivityFlag(data, dataList)} className={style.iconOn} src={completed} alt="pressed" />}
 
-                {data.editingTodo ? <input onKeyDown={(e) => savingChangesItem(e, data.id)} className={style.listText} defaultValue={data.todoText} id="main__list-text" /> :
+                {data.editingTodo ? <input onBlur={cancelingSaveByClick} onKeyDown={(e) => savingChangesItem(e, data.id)} className={style.listText} defaultValue={data.todoText} id="main__list-text" /> :
                     <label onDoubleClick={() => editItem(data.id)} className={data.activityFlag ? style.listTodo : stylesMultipleClasses(style.listTodo, style.completed)}
                         htmlFor="main__list-text">{data.todoText}</label>}
 

@@ -1,7 +1,7 @@
 import ItemTodo from '../ItemTodo/ItemTodo';
 import style from './Main.module.css';
 
-const Main = ({ data, deleteTodo, activitySwitch, filter, editItem, savingChangesItem }) => {
+const Main = ({ data, deleteTodo, activitySwitch, filter, editItem, savingChangesItem, cancelingSaveByClick }) => {
 
     const filterItems = (filterName, data) => {
         if (filterName === 'All') {
@@ -20,7 +20,8 @@ const Main = ({ data, deleteTodo, activitySwitch, filter, editItem, savingChange
             <ul>
                 {filterItems(filter, data).map(item => {
                     return <ItemTodo dataList={data} data={item} key={item.id}
-                     deleteTodo={deleteTodo} activitySwitch={activitySwitch} editItem={editItem} savingChangesItem={savingChangesItem}/>
+                     deleteTodo={deleteTodo} activitySwitch={activitySwitch} editItem={editItem} 
+                     savingChangesItem={savingChangesItem} cancelingSaveByClick={cancelingSaveByClick}/>
                 })}
             </ul>
         </main>

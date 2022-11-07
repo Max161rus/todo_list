@@ -1,6 +1,6 @@
 import style from './Header.module.css';
 
-const Header = ({ addTodo, data, selectAllTodoActive, selectAllTodo }) => {
+const Header = ({ addTodo, data, selectAllTodo }) => {
 
     const addTextTodo = e => {
         if (e.key === 'Enter' && e.target.value !== '') {
