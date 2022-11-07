@@ -47,11 +47,46 @@ const App = () => {
     setFilter(text);
   }
 
+  const editItem = id => {
+    const newData = [];
+    data.forEach((item, index) => {
+      newData[index] = item;
+      if (item.id === id) {
+        newData[index].editingTodo = true;
+      }
+    });
+    setData(newData);
+  }
+
+  const savingChangesItem = (e, id) => {
+    if (e.key === 'Enter') {
+      const newData = [];
+      data.forEach((item, index) => {
+        newData[index] = item;
+        if (item.id === id) {
+          newData[index].todoText = e.target.value;
+          newData[index].editingTodo = false;
+        }
+      });
+      setData(newData);
+    }
+    if (e.key === 'Escape') {
+      const newData = [];
+      data.forEach((item, index) => {
+        newData[index] = item;
+        if (item.id === id) {
+          newData[index].editingTodo = false;
+        }
+      });
+      setData(newData);
+    }
+  }
+
   return (
     <section className={style.todoapp}>
       <Header addTodo={addTodo} data={data} selectAllTodo={selectAllTodo} />
-      <Main data={data} deleteTodo={deleteTodo} activitySwitch={activitySwitch} filter={filter}/>
-      {data.length > 0 ? <Footer data={data} deleteСompletedTodos={deleteСompletedTodos} filterTodo={filterTodo} filter={filter}/> : null}
+      <Main data={data} deleteTodo={deleteTodo} activitySwitch={activitySwitch} filter={filter} editItem={editItem} savingChangesItem={savingChangesItem} />
+      {data.length > 0 && <Footer data={data} deleteСompletedTodos={deleteСompletedTodos} filterTodo={filterTodo} filter={filter} />}
     </section>
   );
 }
