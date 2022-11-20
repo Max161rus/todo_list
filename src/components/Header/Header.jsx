@@ -1,37 +1,16 @@
+import { useState } from 'react';
 import style from './Header.module.css';
 
-const Header = ({ addTodo, data, selectAllTodo }) => {
+const Header = ({ data, addTodo, allItemsToggle }) => {
 
-    const addTextTodo = e => {
-        if (e.key === 'Enter' && e.target.value !== '') {
-            const text = e.target.value;
-            e.target.value = '';
-            addTodo(text);
-        }
-    }
-
-    const allCasesActive = data => {
-        const newData = [...data];
-        newData.forEach((item, index) => {
-            item.activityFlag = true;
-        });
-        selectAllTodo(newData);
-    }
-
-    const allCasesComplite = data => {
-        const newData = [...data];
-        newData.forEach((item, index) => {
-            item.activityFlag = false;
-        });
-        selectAllTodo(newData);
-    }
+    const [text, onText] = useState('');
 
     const addLabelSelectAll = data => {
         if (data.length > 0 && data.every(item => !item.activityFlag)) {
-            return <label onClick={() => allCasesActive(data)} className={style.newTodoLabelActive}>❯</label>
+            return <label onClick={() => allItemsToggle(true)} className={style.newTodoLabelActive}>❯</label>
         }
         else if (data.length > 0) {
-            return <label onClick={() => allCasesComplite(data)} className={style.newTodoLabelNonActive}>❯</label>
+            return <label onClick={() => allItemsToggle(false)} className={style.newTodoLabelNonActive}>❯</label>
         } else {
             return null;
         }
@@ -44,7 +23,7 @@ const Header = ({ addTodo, data, selectAllTodo }) => {
                 <div className={style.newTodoWrapper}>
                     {addLabelSelectAll(data)}
                 </div>
-                <input onKeyDown={addTextTodo} className={style.newTodoText} placeholder="Что нужно сделать?" autoFocus />
+                <input onChange={e => onText(e.target.value)} onKeyDown={(e) => addTodo(e, text, onText)} className={style.newTodoText} placeholder="Что нужно сделать?" autoFocus value={text} />
             </div>
         </header>
     );

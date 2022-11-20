@@ -1,27 +1,15 @@
 import ItemTodo from '../ItemTodo/ItemTodo';
 import style from './Main.module.css';
 
-const Main = ({ data, deleteTodo, activitySwitch, filter, editItem, savingChangesItem, cancelingSaveByClick }) => {
-
-    const filterItems = (filterName, data) => {
-        if (filterName === 'All') {
-            return data.filter(item => item);
-        }
-        if (filterName === 'Active') {
-            return data.filter(item => item.activityFlag);
-        }
-        if (filterName === 'Completed') {
-            return data.filter(item => !item.activityFlag);
-        }
-    }
+const Main = ({ data, deleteTodo, savingChangesItem, switchingActivityItem, cancEditByRemovFocus }) => {
 
     return (
         <main className={style.main}>
             <ul>
-                {filterItems(filter, data).map(item => {
-                    return <ItemTodo dataList={data} data={item} key={item.id}
-                     deleteTodo={deleteTodo} activitySwitch={activitySwitch} editItem={editItem} 
-                     savingChangesItem={savingChangesItem} cancelingSaveByClick={cancelingSaveByClick}/>
+                {data.map(item => {
+                    return <ItemTodo data={item} key={item.id}
+                        deleteTodo={deleteTodo} switchingActivityItem={switchingActivityItem}
+                        savingChangesItem={savingChangesItem} cancEditByRemovFocus={cancEditByRemovFocus} />
                 })}
             </ul>
         </main>
