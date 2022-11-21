@@ -4,6 +4,7 @@ import Header from './components/Header';
 import Main from './components/Main';
 import Footer from './components/Footer';
 import style from './App.module.css';
+import Section from './App.styled';
 
 const TODO_LIST_STORAGE_KEY = 'dataList';
 
@@ -30,20 +31,20 @@ const getStoredFilter = () => {
 
 const App = () => {
 
-  const [data, setData] = useState(getStoredTodos); 
+  const [data, setData] = useState(getStoredTodos);
 
-  const [filter, setFilter] = useState(getStoredFilter); 
+  const [filter, setFilter] = useState(getStoredFilter);
 
-  useEffect(() => { 
+  useEffect(() => {
     const setStoredData = JSON.stringify(data);
     localStorage.setItem(TODO_LIST_STORAGE_KEY, setStoredData);
   }, [data]);
 
-  useEffect(() => { 
+  useEffect(() => {
     localStorage.setItem(FILTER_STORAGE_KEY, filter);
   }, [filter])
 
-  const addTodo = (e, text, textEditor) => { 
+  const addTodo = (e, text, textEditor) => {
     if (e.key === 'Enter' && text !== '') {
       const uniqueId = uuidv4();
       const newTodo = {
@@ -56,17 +57,17 @@ const App = () => {
     }
   }
 
-  const deleteTodo = id => { 
+  const deleteTodo = id => {
     const newData = data.filter(item => item.id !== id);
     setData(newData);
   }
 
-  const deleteСompletedTodos = () => { 
+  const deleteСompletedTodos = () => {
     const newData = data.filter(item => item.activityFlag);
     setData(newData);
   }
 
-  const switchingActivityItem = id => { 
+  const switchingActivityItem = id => {
     const newData = [...data];
     newData.forEach(item => {
       if (item.id === id) {
@@ -76,17 +77,17 @@ const App = () => {
     setData(newData);
   }
 
-  const allItemsToggle = value => { 
+  const allItemsToggle = value => {
     const newData = [...data];
     newData.forEach(item => item.activityFlag = value);
     setData(newData);
   }
 
-  const filterTodo = text => { 
+  const filterTodo = text => {
     setFilter(text);
   }
 
-  const savingChangesItem = (e, id, text, editingTodo, setInitialValueText) => { 
+  const savingChangesItem = (e, id, text, editingTodo, setInitialValueText) => {
     if (e.key === 'Enter') {
       const newData = [...data];
       newData.forEach(item => {
@@ -107,7 +108,7 @@ const App = () => {
     }
   }
 
-  const cancEditByRemovFocus = (id, editingTodo, setInitialValueText) => { 
+  const cancEditByRemovFocus = (id, editingTodo, setInitialValueText) => {
     data.forEach(item => {
       if (item.id === id) {
         setInitialValueText(item.todoText);
@@ -129,15 +130,14 @@ const App = () => {
   }
 
   return (
-    <section className={style.todoapp}>
+    <Section >
       <Header data={data} addTodo={addTodo} allItemsToggle={allItemsToggle} />
       <Main data={filterItems()} deleteTodo={deleteTodo} switchingActivityItem={switchingActivityItem}
         filter={filter} savingChangesItem={savingChangesItem} cancEditByRemovFocus={cancEditByRemovFocus} />
       {data.length > 0 && <Footer data={data} deleteСompletedTodos={deleteСompletedTodos} filterTodo={filterTodo} filter={filter} />}
-    </section>
+    </Section>
   );
 }
 
 export default App;
 
-// сдесь изменнения
