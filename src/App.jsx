@@ -3,7 +3,6 @@ import { v4 as uuidv4 } from 'uuid';
 import Header from './components/Header';
 import Main from './components/Main';
 import Footer from './components/Footer';
-import style from './App.module.css';
 import Section from './App.styled';
 
 const TODO_LIST_STORAGE_KEY = 'dataList';

@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import style from './Header.module.css';
+import {HeaderWrapper, Heading, NewTodo, NewTodoLabelNonActive, NewTodoLabelActive, NewTodoWrapper, NewTodoText} from './Header.styled';
+
 
 const Header = ({ data, addTodo, allItemsToggle }) => {
 
@@ -7,25 +8,25 @@ const Header = ({ data, addTodo, allItemsToggle }) => {
 
     const addLabelSelectAll = data => {
         if (data.length > 0 && data.every(item => !item.activityFlag)) {
-            return <label onClick={() => allItemsToggle(true)} className={style.newTodoLabelActive}>❯</label>
+            return <NewTodoLabelActive onClick={() => allItemsToggle(true)} >❯</NewTodoLabelActive>
         }
         else if (data.length > 0) {
-            return <label onClick={() => allItemsToggle(false)} className={style.newTodoLabelNonActive}>❯</label>
+            return <NewTodoLabelNonActive onClick={() => allItemsToggle(false)} >❯</NewTodoLabelNonActive>
         } else {
             return null;
         }
     }
 
     return (
-        <header className={style.header}>
-            <h1 className={style.heading}>todos</h1>
-            <div className={style.newTodo}>
-                <div className={style.newTodoWrapper}>
+        <HeaderWrapper >
+            <Heading >todos</Heading>
+            <NewTodo >
+                <NewTodoWrapper >
                     {addLabelSelectAll(data)}
-                </div>
-                <input onChange={e => onText(e.target.value)} onKeyDown={(e) => addTodo(e, text, onText)} className={style.newTodoText} placeholder="Что нужно сделать?" autoFocus value={text} />
-            </div>
-        </header>
+                </NewTodoWrapper>
+                <NewTodoText onChange={e => onText(e.target.value)} onKeyDown={(e) => addTodo(e, text, onText)} placeholder="Что нужно сделать?" autoFocus value={text} />
+            </NewTodo>
+        </HeaderWrapper>
     );
 }
 

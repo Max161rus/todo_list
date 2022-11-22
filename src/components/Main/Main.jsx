@@ -1,10 +1,10 @@
 import ItemTodo from '../ItemTodo/ItemTodo';
-import style from './Main.module.css';
+import ListWrapper from './Main.styled';
 
 const Main = ({ data, deleteTodo, savingChangesItem, switchingActivityItem, cancEditByRemovFocus }) => {
 
     return (
-        <main className={style.main}>
+        <ListWrapper >
             <ul>
                 {data.map(item => {
                     return <ItemTodo data={item} key={item.id}
@@ -12,7 +12,7 @@ const Main = ({ data, deleteTodo, savingChangesItem, switchingActivityItem, canc
                         savingChangesItem={savingChangesItem} cancEditByRemovFocus={cancEditByRemovFocus} />
                 })}
             </ul>
-        </main>
+        </ListWrapper>
     );
 }
 
