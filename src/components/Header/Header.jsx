@@ -1,10 +1,35 @@
 import { useState } from 'react';
-import {HeaderWrapper, Heading, NewTodo, NewTodoLabelNonActive, NewTodoLabelActive, NewTodoWrapper, NewTodoText} from './Header.styled';
+import { HeaderWrapper, Heading, NewTodo, NewTodoLabelNonActive, NewTodoLabelActive, NewTodoWrapper, NewTodoText } from './Header.styled';
+import { useDispatch, useSelector } from 'react-redux';
+import { todoSlice } from '../../store/todoListReducer';
+import { v4 as uuidv4 } from 'uuid';
 
-
-const Header = ({ data, addTodo, allItemsToggle }) => {
+const Header = () => {
 
     const [text, onText] = useState('');
+
+    const dispach = useDispatch();
+
+    const action = todoSlice.actions;
+
+    const data = useSelector(fullStore => fullStore.data.data)
+
+    const addTodoNew = (e) => {
+        if (e.key === 'Enter' && text !== '') {
+            const uniqueId = uuidv4();
+            const newTodo = {
+                todoText: text,
+                activityFlag: true,
+                id: uniqueId
+            };
+            onText('');
+            dispach(action.addTodo(newTodo));
+        }
+    }
+
+    const  allItemsToggle = (value) => {
+        dispach(action.allItemsToggle(value));
+    }
 
     const addLabelSelectAll = data => {
         if (data.length > 0 && data.every(item => !item.activityFlag)) {
@@ -24,7 +49,7 @@ const Header = ({ data, addTodo, allItemsToggle }) => {
                 <NewTodoWrapper >
                     {addLabelSelectAll(data)}
                 </NewTodoWrapper>
-                <NewTodoText onChange={e => onText(e.target.value)} onKeyDown={(e) => addTodo(e, text, onText)} placeholder="Что нужно сделать?" autoFocus value={text} />
+                <NewTodoText onKeyDown={(e) => addTodoNew(e)} onChange={e => onText(e.target.value)} placeholder="Что нужно сделать?" autoFocus value={text} />
             </NewTodo>
         </HeaderWrapper>
     );
