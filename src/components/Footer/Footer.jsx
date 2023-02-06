@@ -38,12 +38,19 @@ const Footer = () => {
     return (
         <FooterWrapper >
             <Count >{activeСases(data)} item{activeСases(data) > 1 && "s"} left</Count>
+
             <Filter >
-                {filterButtonArr.map(item => <FilterButton onClick={() => toggleFilter(item)} filter={filter === item ? 'true' : null} key={uuidv4()}>{item}</FilterButton>)}
+                {filterButtonArr.map(item => <FilterButton
+                    onClick={() => toggleFilter(item)}
+                    filter={filter === item ? 'true' : null}
+                    key={uuidv4()}>{item}</FilterButton>)}
             </Filter>
+
             <BtnClear >
-                {data.some(item => item.activityFlag === false) && <Clear onClick={() => deleteComplitedTodo(data)}>Clear completed</Clear>}
+                {data.some(item => item.activityFlag === false) &&
+                    <Clear onClick={() => deleteComplitedTodo(data)}>Clear completed</Clear>}
             </BtnClear>
+
         </FooterWrapper>
     );
 }

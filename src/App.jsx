@@ -4,8 +4,7 @@ import Main from './components/Main';
 import Footer from './components/Footer';
 import Section from './App.styled';
 import { useEffect } from 'react';
-import {TODO_LIST_STORAGE_KEY, FILTER_STORAGE_KEY} from './service/service';
-
+import { TODO_LIST_STORAGE_KEY, FILTER_STORAGE_KEY } from './service/service';
 
 const App = () => {
 

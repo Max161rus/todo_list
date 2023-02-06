@@ -10,9 +10,11 @@ export const todoSlice = createSlice({
   name: 'todoList',
   initialState,
   reducers: {
+
     addTodo: (state, action) => {
       state.data.push(action.payload);
     },
+
     deleteTodo: (state, action) => {
       state.data.forEach((item, index) => {
         if (action.payload === item.id) {
@@ -20,9 +22,11 @@ export const todoSlice = createSlice({
         }
       });
     },
+
     allItemsToggle: (state, action) => {
       state.data.forEach(item => item.activityFlag = action.payload)
     },
+
     switchingActivityItem: (state, action) => {
       state.data.forEach(item => {
         if (item.id === action.payload) {
@@ -30,12 +34,15 @@ export const todoSlice = createSlice({
         }
       });
     },
+
     savingChangesItem: (state, action) => {
       state.data = action.payload;
     },
+
     deleteComplitedTodo: (state, action) => {
       state.data = action.payload;
     },
+    
     toggleFilter: (state, action) => {
       state.filter = action.payload;
     }

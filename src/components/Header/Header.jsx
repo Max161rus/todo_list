@@ -27,17 +27,21 @@ const Header = () => {
         }
     }
 
-    const  allItemsToggle = (value) => {
+    const allItemsToggle = (value) => {
         dispach(action.allItemsToggle(value));
     }
 
-    const addLabelSelectAll = data => {
+    const addLabelSelectAll = (data) => {
+
         if (data.length > 0 && data.every(item => !item.activityFlag)) {
             return <NewTodoLabelActive onClick={() => allItemsToggle(true)} >❯</NewTodoLabelActive>
         }
+
         else if (data.length > 0) {
             return <NewTodoLabelNonActive onClick={() => allItemsToggle(false)} >❯</NewTodoLabelNonActive>
-        } else {
+        }
+
+        else {
             return null;
         }
     }
@@ -49,7 +53,12 @@ const Header = () => {
                 <NewTodoWrapper >
                     {addLabelSelectAll(data)}
                 </NewTodoWrapper>
-                <NewTodoText onKeyDown={(e) => addTodoNew(e)} onChange={e => onText(e.target.value)} placeholder="Что нужно сделать?" autoFocus value={text} />
+                <NewTodoText
+                    onKeyDown={(e) => addTodoNew(e)}
+                    onChange={e => onText(e.target.value)}
+                    placeholder="Что нужно сделать?"
+                    autoFocus
+                    value={text} />
             </NewTodo>
         </HeaderWrapper>
     );

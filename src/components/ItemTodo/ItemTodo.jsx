@@ -21,7 +21,7 @@ const ItemTodo = ({ data }) => {
     const savingChangesItem = (e, id) => {
 
         if (e.key === 'Enter') {
-            
+
             const data = JSON.parse(JSON.stringify(dataList));
 
             data.forEach(item => {
@@ -31,7 +31,7 @@ const ItemTodo = ({ data }) => {
             });
             onEditing(false);
             dispach(action.savingChangesItem(data));
-            
+
         }
         if (e.key === 'Escape') {
             dataList.forEach(item => {
@@ -45,22 +45,32 @@ const ItemTodo = ({ data }) => {
 
     const cancEditByRemovFocus = (id) => {
         dataList.forEach(item => {
-          if (item.id === id) {
-            onText(item.todoText);
-          }
+            if (item.id === id) {
+                onText(item.todoText);
+            }
         });
         onEditing(false);
-      }
+    }
 
     return (
         <ListItem >
             <ListWrapper >
-                {data.activityFlag ? <Img onClick={() => dispach(action.switchingActivityItem(data.id))} src={noCompleted} alt="not pressed" /> :
-                    <Img onClick={() => dispach(action.switchingActivityItem(data.id))} src={completed} alt="pressed" />}
+                {data.activityFlag ? <Img
+                    onClick={() => dispach(action.switchingActivityItem(data.id))}
+                    src={noCompleted} alt="not pressed" /> :
 
-                {editing ? <ListText onChange={(e) => onText(e.target.value)} onKeyDown={(e) => savingChangesItem(e, data.id)} 
-                onBlur={() => cancEditByRemovFocus(data.id)}  value={text} id="main__list-text" /> :
-                    <ListTodo onDoubleClick={() => onEditing(true)} complited={!data.activityFlag ? 'true' : null}
+                    <Img onClick={() => dispach(action.switchingActivityItem(data.id))}
+                        src={completed} alt="pressed" />}
+
+                {editing ? <ListText
+                    onChange={(e) => onText(e.target.value)}
+                    onKeyDown={(e) => savingChangesItem(e, data.id)}
+                    onBlur={() => cancEditByRemovFocus(data.id)}
+                    value={text} id="main__list-text" autoFocus /> :
+
+                    <ListTodo
+                        onDoubleClick={() => onEditing(true)}
+                        complited={!data.activityFlag ? 'true' : null}
                         htmlFor="main__list-text">{text}</ListTodo>}
 
                 <ListClear onClick={() => dispach(action.deleteTodo(data.id))}>×</ListClear>
