@@ -24,7 +24,9 @@ const App = () => {
   return (
     <Section >
       <Header />
+
       <Main />
+
       {data.length > 0 && <Footer />}
     </Section>
   );

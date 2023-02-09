@@ -42,7 +42,7 @@ export const todoSlice = createSlice({
     deleteComplitedTodo: (state, action) => {
       state.data = action.payload;
     },
-    
+
     toggleFilter: (state, action) => {
       state.filter = action.payload;
     }
