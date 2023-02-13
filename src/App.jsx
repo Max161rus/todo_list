@@ -8,9 +8,9 @@ import { TODO_LIST_STORAGE_KEY, FILTER_STORAGE_KEY } from './service/service';
 
 const App = () => {
 
-  const data = useSelector(fullStore => fullStore.data.data);
+  const data = useSelector(({ data }) => data.data);
 
-  const filter = useSelector(fullStore => fullStore.data.filter);
+  const filter = useSelector(({ data }) => data.filter);
 
   useEffect(() => {
     const setStoredData = JSON.stringify(data);
@@ -27,7 +27,7 @@ const App = () => {
 
       <Main />
 
-      {data.length > 0 && <Footer />}
+      <Footer />
     </Section>
   );
 }

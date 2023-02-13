@@ -1,21 +1,16 @@
 import ItemTodo from '../ItemTodo/ItemTodo';
 import ListWrapper from './Main.styled';
 import { useSelector } from 'react-redux';
+import { filteredListAndCounterOfActiveItems } from '../../store/todoListReducer';
 
 const Main = () => {
 
-  const data = useSelector(fullStore => fullStore.data.data);
-
-  const filter = useSelector(fullStore => fullStore.data.filter);
-
-  const itemTodo = (elem) => <ItemTodo data={elem} key={elem.id} />
+  const { filteredTodoList } = useSelector(filteredListAndCounterOfActiveItems);
 
   return (
     <ListWrapper >
       <ul>
-        {filter === 'All' && data.map(item => itemTodo(item))}
-        {filter === 'Active' && data.filter(item => item.activityFlag).map(item => itemTodo(item))}
-        {filter === 'Complited' && data.filter(item => !item.activityFlag).map(item => itemTodo(item))}
+        {filteredTodoList.map(elem => <ItemTodo data={elem} key={elem.id} />)}
       </ul>
     </ListWrapper>
   );

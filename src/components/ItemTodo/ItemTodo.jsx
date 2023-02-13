@@ -3,7 +3,7 @@ import { ListItem, ListWrapper, Img, ListText, ListTodo, ListClear } from './Ite
 import completed from './images/completed.svg';
 import noCompleted from './images/no_completed.svg';
 import { useDispatch } from 'react-redux';
-import { todoSlice } from '../../store/todoListReducer';
+import { todoActions } from '../../store/todoListReducer';
 import { useSelector } from 'react-redux';
 
 const ItemTodo = ({ data }) => {
@@ -12,11 +12,9 @@ const ItemTodo = ({ data }) => {
 
   const [text, onText] = useState(data.todoText);
 
-  const action = todoSlice.actions;
-
   const dispach = useDispatch();
 
-  const dataList = useSelector(fullStore => fullStore.data.data);
+  const dataList = useSelector(({ data }) => data.data);
 
   const savingChangesItem = (e, id) => {
 
@@ -30,7 +28,7 @@ const ItemTodo = ({ data }) => {
         }
       });
       onEditing(false);
-      dispach(action.savingChangesItem(data));
+      dispach(todoActions.savingChangesItem(data));
 
     }
     if (e.key === 'Escape') {
@@ -56,10 +54,10 @@ const ItemTodo = ({ data }) => {
     <ListItem >
       <ListWrapper >
         {data.activityFlag ? <Img
-          onClick={() => dispach(action.switchingActivityItem(data.id))}
+          onClick={() => dispach(todoActions.switchingActivityItem(data.id))}
           src={noCompleted} alt="not pressed" /> :
 
-          <Img onClick={() => dispach(action.switchingActivityItem(data.id))}
+          <Img onClick={() => dispach(todoActions.switchingActivityItem(data.id))}
             src={completed} alt="pressed" />}
 
         {editing ? <ListText
@@ -73,7 +71,7 @@ const ItemTodo = ({ data }) => {
             complited={!data.activityFlag ? 'true' : null}
             htmlFor="main__list-text">{text}</ListTodo>}
 
-        <ListClear onClick={() => dispach(action.deleteTodo(data.id))}>×</ListClear>
+        <ListClear onClick={() => dispach(todoActions.deleteTodo(data.id))}>×</ListClear>
       </ListWrapper>
     </ListItem>
   );

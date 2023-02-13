@@ -1,54 +1,35 @@
 import { FooterWrapper, Count, Filter, FilterButton, BtnClear, Clear } from './Footer.styled';
-import { v4 as uuidv4 } from 'uuid';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { todoSlice } from '../../store/todoListReducer';
+import { filterButtonArr } from '../../utils/constants';
+import { filteredListAndCounterOfActiveItems, todoActions } from '../../store/todoListReducer';
 
 const Footer = () => {
 
-  const data = useSelector(fullStore => fullStore.data.data);
-
-  const filter = useSelector(fullStore => fullStore.data.filter);
-
   const dispach = useDispatch();
+  const data = useSelector(({ data }) => data.data);
+  const filter = useSelector(({ data }) => data.filter);
+  const numberListItems = useSelector(({ data }) => data.data.length);
+  const { countActiveTodo } = useSelector(filteredListAndCounterOfActiveItems);
 
-  const action = todoSlice.actions;
-
-  const filterButtonArr = ['All', 'Active', 'Complited'];
-
-  const activeСases = todos => {
-    let counter = 0;
-    todos.forEach(item => {
-      if (item.activityFlag) {
-        counter++;
-      }
-    });
-    return counter;
-  }
-
-  const deleteComplitedTodo = (dataList) => {
-    const activeData = dataList.filter(item => item.activityFlag);
-    dispach(action.deleteComplitedTodo(activeData));
-  }
-
-  const toggleFilter = (filterName) => {
-    dispach(action.toggleFilter(filterName));
+  if (!numberListItems) {
+    return null;
   }
 
   return (
     <FooterWrapper >
-      <Count >{activeСases(data)} item{activeСases(data) > 1 && "s"} left</Count>
+      <Count >{countActiveTodo} item{countActiveTodo > 1 && "s"} left</Count>
 
       <Filter >
         {filterButtonArr.map(item => <FilterButton
-          onClick={() => toggleFilter(item)}
+          onClick={() => dispach(todoActions.toggleFilter(item))}
           filter={filter === item ? 'true' : null}
-          key={uuidv4()}>{item}</FilterButton>)}
+          key={item}>{item}</FilterButton>)}
       </Filter>
 
       <BtnClear >
         {data.some(item => item.activityFlag === false) &&
-          <Clear onClick={() => deleteComplitedTodo(data)}>Clear completed</Clear>}
+          <Clear onClick={() => dispach(todoActions.deleteComplitedTodo())}>Clear completed</Clear>}
       </BtnClear>
 
     </FooterWrapper>
